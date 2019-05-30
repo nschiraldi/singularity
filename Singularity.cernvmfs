@@ -8,4 +8,7 @@ From: oraclelinux:7
     Author Nicholas Schiraldi
 
 %post 
-    yum -y update && yum -y install https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
+    yum -y update && 
+    yum -y install https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm && 
+    yum install -y cvmfs
+
