@@ -14,6 +14,7 @@ From: oraclelinux:7
     export PATH="/opt/cctools/bin:$PATH"
 %post 
     yum -y update && yum -y install https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm && yum install -y cvmfs && yum -y install vim
+    yum install -y wget
     mkdir -p /opt/cctools/
     wget http://ccl.cse.nd.edu/software/files/cctools-7.0.13-source.tar.gz && tar xvfz cctools-7.0.13-source.tar.gz -C /opt/cctools/ && rm -rf cctools-7.0.13-source.tar.gz
     
