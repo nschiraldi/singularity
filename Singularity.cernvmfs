@@ -11,12 +11,13 @@ From: oraclelinux:7
     export PARROT_CVMFS_REPO="<default-repositories>"
     export PARROT_ALLOW_SWITCHING_CVMFS_REPOSITORIES=yes
     export HTTP_PROXY="DIRECT"
-    export PATH="/opt/cctools/bin:$PATH"
+    export PATH="/opt/cctools-7.0.13-x86_64-centos7/bin:$PATH"
+    
 %post 
     yum -y update && yum -y install https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm && yum install -y cvmfs && yum -y install vim
     yum install -y wget
     mkdir -p /opt/cctools/
-    wget http://ccl.cse.nd.edu/software/files/cctools-7.0.13-source.tar.gz && tar xvfz cctools-7.0.13-source.tar.gz -C /opt/cctools/ && rm -rf cctools-7.0.13-source.tar.gz
+    wget http://ccl.cse.nd.edu/software/files/cctools-7.0.13-x86_64-centos7.tar.gz && tar xvfz cctools-7.0.13-x86_64-centos7.tar.gz -C /opt/ && rm -rf cctools-7.0.13-x86_64-centos7.tar.gz
     
 %runscript
     #Run the commands passed by the user outside the container.
