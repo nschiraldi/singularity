@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: oraclelinux:7
+From: cern/cc7-base
 
 %help
     This is a demo image to test CernVM-FS deployment on ITS resources
