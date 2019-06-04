@@ -3,8 +3,9 @@
 A collection of singularity images that may be useful for HPC
 
 ## cernvmfs
-This image allows rootless integration of /cvmfs/ on any machine with singularity installed. Please see https://cernvm.cern.ch/portal/filesystem/parrot for more information on the parrot connector
+This image allows rootless integration of /cvmfs/ on any machine with singularity installed. Please see https://cernvm.cern.ch/portal/filesystem/parrot for more information on the parrot connector.
 
+Note, that in the example we are binding a local /network/ directory to /network/ on the image, to expose NFS shares. 
 ```bash
 $ singularity pull shub://nschiraldi/singularity:cernvmfs
 $ singularity exec --bind /network/:/network/ singularity_cernvmfs.sif parrot_run bash --noprofile --norc Singularity> cd /cvmfs/alice.cern.ch
