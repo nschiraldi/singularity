@@ -18,8 +18,6 @@ From: cern/cc7-base
     yum install -y wget
     mkdir -p /opt/cctools/
     wget http://ccl.cse.nd.edu/software/files/cctools-7.0.13-x86_64-centos7.tar.gz && tar xvfz cctools-7.0.13-x86_64-centos7.tar.gz -C /opt/ && rm -rf cctools-7.0.13-x86_64-centos7.tar.gz
-    parrot_run bash --noprofile --norc
-    source /cvmfs/lz.opensciencegrid.org/LZap/latest/x86_64-centos7-gcc7-opt/setup.sh
     
 %runscript
     #Run the commands passed by the user outside the container.
