@@ -1,3 +1,6 @@
+[![https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg](https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg)](https://singularity-hub.org/collections/3075)
+
+
 # singularity
 
 A collection of singularity images that may be useful for HPC
