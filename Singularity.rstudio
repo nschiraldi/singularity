@@ -6,10 +6,10 @@ From: rocker/rstudio
 
 %runscript
     rstudio "$@"
-    export r_mirror="http://lib.stat.cmu.edu/R/CRAN/"
     
 %post
-    apt-get update -qq && apt-get -y --no-install-recommends install \
+  export r_mirror="http://lib.stat.cmu.edu/R/CRAN/"
+  apt-get update -qq && apt-get -y --no-install-recommends install \
   libxml2-dev \
   libcairo2-dev \
   libsqlite3-dev \
