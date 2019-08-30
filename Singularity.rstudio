@@ -1,5 +1,5 @@
-BootStrap: docker
-From: rocker/rstudio
+Bootstrap: docker
+From: rocker:rstudio
 
 %labels
     Maintainer Nicholas Schiraldi <nschiraldi@albany.edu>
