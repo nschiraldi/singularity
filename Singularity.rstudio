@@ -37,7 +37,7 @@ From: rocker/rstudio
   libproj-dev \
   jags \
   && install2.r --error \
-    --deps TRUE -n 20 \
+    --deps TRUE -n 2 \
     tidyverse \
     dplyr \
     devtools \
