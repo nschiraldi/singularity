@@ -1,15 +1,27 @@
 Bootstrap: docker
-From: rocker:rstudio
+From: rocker/rstudio
 
 %labels
-    Maintainer Nicholas Schiraldi <nschiraldi@albany.edu>
+  Maintainer Nicholas Schiraldi
+  Base Image: docker://rocker/rstudio
+  Date created: 2019-Nov-01
+
+%help
+  This will run RStudio server. The suggested way to run this image is to follow:
+  /network/rit/misc/software/examples/slurm/singularity/r/rstudio.sbatch
+
+%apprun rserver
+  exec rserver "${@}"
 
 %runscript
-    rstudio "$@"
-    
+  exec rserver "${@}"
+
+%environment
+  export R_LIBS_USER=~/R/
+
 %post
-  export r_mirror="http://lib.stat.cmu.edu/R/CRAN/"
-  apt-get update -qq && apt-get -y --no-install-recommends install \
+  apt-get update -qq
+  apt-get -y --no-install-recommends install \
   libxml2-dev \
   libcairo2-dev \
   libsqlite3-dev \
@@ -24,9 +36,8 @@ From: rocker:rstudio
   libgdal-dev \
   libproj-dev \
   jags \
-  && R -e "source('https://bioconductor.org/biocLite.R')" \
   && install2.r --error \
-    --deps TRUE \
+    --deps TRUE -n 20 \
     tidyverse \
     dplyr \
     devtools \
@@ -36,9 +47,4 @@ From: rocker:rstudio
     caTools \
     R2jags \
     BiocManager \
-  && R -e "BiocManager::install('DESeq2', version=3.8)" \
-  && rm -rf /tmp/*
-
-
-%environment
-    export LC_ALL=C.UTF-8
+  && R -e "BiocManager::install()"
