@@ -18,3 +18,8 @@ bin          el5-x86_64  etc                x86_64-2.6-gnu-4.1.2  x86_64-2.6-gnu
 calibration  el6-x86_64  ubuntu1404-x86_64  x86_64-2.6-gnu-4.7.2
 data         el7-x86_64  ubuntu1604-x86_64  x86_64-2.6-gnu-4.8.3
 ```
+
+## rstudio
+```bash
+PASSWORD='test' singularity exec --bind /network/ rstudio.simg rserver --www-address=0.0.0.0 --www-port=4021 --auth-none=0 --auth-pam-helper-path=pam-helper
+```
