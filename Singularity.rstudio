@@ -36,6 +36,7 @@ From: rocker/rstudio
   libgdal-dev \
   libproj-dev \
   jags \
+  libudunits2-dev \
   && install2.r --error \
     --deps TRUE -n 2 \
     tidyverse \
