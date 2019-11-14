@@ -26,7 +26,7 @@ From: ubuntu
     cd /tmp/ompi && wget -O openmpi-$OMPI_VERSION.tar.bz2 $OMPI_URL && tar -xjf openmpi-$OMPI_VERSION.tar.bz2
     
     # Compile and install
-    #cd /tmp/ompi/openmpi-$OMPI_VERSION && ./configure --prefix=$OMPI_DIR && make install
+    cd /tmp/ompi/openmpi-$OMPI_VERSION && ./configure --prefix=$OMPI_DIR && make install
     
     # Set env variables so we can compile our application
     export PATH=$OMPI_DIR/bin:$PATH
@@ -53,6 +53,7 @@ From: ubuntu
     
     echo "adding conda to global environment"
     cp /opt/miniconda3/etc/profile.d/conda.sh /etc/profile.d/
+    chmod a+rx -R /opt/miniconda3/
 
 %apprun preprocessing
     exec /opt/miniconda3/envs/HydroBlocks/bin/python3 /opt/HydroBlocks/Preprocessing/Driver.py "${@}"
