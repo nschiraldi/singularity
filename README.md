@@ -21,5 +21,12 @@ data         el7-x86_64  ubuntu1604-x86_64  x86_64-2.6-gnu-4.8.3
 
 ## rstudio
 ```bash
-PASSWORD='test' singularity exec --bind /network/ rstudio.simg rserver --www-address=0.0.0.0 --www-port=4021 --auth-none=0 --auth-pam-helper-path=pam-helper
+$ PASSWORD='test' singularity exec --bind /network/ rstudio.simg rserver --www-address=0.0.0.0 --www-port=4021 --auth-none=0 --auth-pam-helper-path=pam-helper
+```
+
+## HydroBlocks
+This image will run the preprocessing and processing (not yet implemented) stages of HydroBlocks. It is not yet operational.
+```bash
+$ singularity pull shub://nschiraldi/singularity:HydroBlocks
+$ singularity run --app preprocessing hydroblocks metadata.json
 ```
