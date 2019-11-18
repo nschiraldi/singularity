@@ -39,6 +39,9 @@ From: rocker/rstudio
   libudunits2-dev \
   libv8-dev \
   libjq-dev \
+  protobuf-compiler \
+  libprotobuf-dev \
+  libgsl-dev \
   && install2.r --error \
     --deps TRUE -n 6 \
     momentuHMM \
