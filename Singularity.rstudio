@@ -37,8 +37,12 @@ From: rocker/rstudio
   libproj-dev \
   jags \
   libudunits2-dev \
+  libv8-dev \
+  libjq-dev \
   && install2.r --error \
-    --deps TRUE -n 2 \
+    --deps TRUE -n 6 \
+    momentuHMM \
+    amt \
     tidyverse \
     dplyr \
     devtools \
