@@ -13,6 +13,9 @@ From: rocker/rstudio
 %apprun rserver
   exec rserver "${@}"
 
+%apprun Rscript
+  exec Rscript "${@}"
+
 %runscript
   exec rserver "${@}"
 
@@ -55,4 +58,10 @@ From: rocker/rstudio
     caTools \
     R2jags \
     BiocManager \
+    bain \
+    readr \
+    rjags \
+    coda \
+    RMediation \
+    argparse \
   && R -e "BiocManager::install()"
