@@ -45,6 +45,8 @@ From: rocker/rstudio
   protobuf-compiler \
   libprotobuf-dev \
   libgsl-dev \
+  libbz2-dev \
+  libpcre3-dev \
   && install2.r --error \
     --deps TRUE -n 6 \
     momentuHMM \
