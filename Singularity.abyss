@@ -1,0 +1,43 @@
+Bootstrap: docker
+From: ubuntu:18.04
+
+%environment
+    export OMPI_DIR=/opt/openmpi-v3.1/3.1.4/
+    export SINGULARITY_OMPI_DIR=$OMPI_DIR
+    export SINGULARITYENV_APPEND_PATH=$OMPI_DIR/bin
+    export SINGULAIRTYENV_APPEND_LD_LIBRARY_PATH=$OMPI_DIR/lib
+
+%post
+    echo "Installing required packages..."
+    apt-get update && apt-get install -y wget git bash gcc gfortran g++ make file bsdmainutils \
+        automake libboost-dev libsparsehash-dev
+
+    echo "Installing Open MPI"
+    export OMPI_DIR=/opt/openmpi-v3.1/3.1.4
+    export OMPI_VERSION=3.1.4
+    export OMPI_URL="https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-$OMPI_VERSION.tar.bz2"
+    mkdir -p /tmp/ompi
+    mkdir -p $OMPI_DIR
+    
+    # Download openmpi -- this should match the local host version
+    cd /tmp/ompi && wget -O openmpi-$OMPI_VERSION.tar.bz2 $OMPI_URL && tar -xjf openmpi-$OMPI_VERSION.tar.bz2
+    
+    # Compile and install
+    cd /tmp/ompi/openmpi-$OMPI_VERSION && ./configure --prefix=$OMPI_DIR && make install
+    
+    # Set env variables so we can compile our application
+    export PATH=$OMPI_DIR/bin:$PATH
+    export LD_LIBRARY_PATH=$OMPI_DIR/lib:$LD_LIBRARY_PATH
+    export MANPATH=$OMPI_DIR/share/man:$MANPATH
+    
+    # Start installing ABYSS
+    cd /tmp/
+    wget https://github.com/bcgsc/abyss/releases/download/2.2.3/abyss-2.2.3.tar.gz && tar xvfz abyss-2.2.3.tar.gz
+    cd abyss-2.2.3 && ./autogen.sh 
+    mkdir build && cd build    
+    ../configure --with-mpi=$OMPI_DIR
+    make install-strip
+    
+    
+    
+    
