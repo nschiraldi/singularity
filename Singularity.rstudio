@@ -29,8 +29,6 @@ From: rocker/rstudio
   libcairo2-dev \
   libsqlite3-dev \
   libmariadbd-dev \
-  libmariadb-client-lgpl-dev \
-  libpq-dev \
   libssl-dev \
   libcurl4-openssl-dev \
   libssh2-1-dev \
@@ -46,8 +44,9 @@ From: rocker/rstudio
   libprotobuf-dev \
   libgsl-dev \
   libbz2-dev \
-  libpcre3-dev \
-  && install2.r --error \
+  libpcre3-dev 
+  
+  install2.r --error \
     --deps TRUE -n 6 \
     momentuHMM \
     amt \
@@ -66,4 +65,9 @@ From: rocker/rstudio
     coda \
     RMediation \
     argparse \
-  && R -e "BiocManager::install()"
+    devtools \
+    stringi
+
+  R -e "BiocManager::install()"
+  R -e "devtools::install_github('cbail/textnets')"
+  R -e "devtools::install_github('dpseidel/stmove')"
