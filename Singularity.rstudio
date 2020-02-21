@@ -44,10 +44,14 @@ From: rocker/rstudio
   libprotobuf-dev \
   libgsl-dev \
   libbz2-dev \
-  libpcre3-dev 
+  libpcre3-dev \
+  texlive-latex-base
   
   install2.r --error \
-    --deps TRUE -n 6 \
+    --deps TRUE -n 18 \
+    sf \
+    rgdal \
+    rgeos \
     momentuHMM \
     amt \
     tidyverse \
@@ -67,7 +71,7 @@ From: rocker/rstudio
     argparse \
     devtools \
     stringi
-
+  
   R -e "BiocManager::install()"
   R -e "devtools::install_github('cbail/textnets')"
   R -e "devtools::install_github('dpseidel/stmove')"
