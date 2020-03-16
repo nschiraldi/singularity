@@ -8,13 +8,15 @@ From: ubuntu
     export SINGULAIRTYENV_APPEND_LD_LIBRARY_PATH=$OMPI_DIR/lib
     export PATH=/opt/miniconda3/bin:$PATH    
     export PROJ_LIB=/opt/miniconda3/share/proj/
+    #export MPLBACKEND=qt5agg
 
-#%files
-#    environment.yml /opt/
+%runscript
+    export PS1="(singularity) $PS1"
+    bash "${@}"
 
 %post
     echo "Installing required packages..."
-    apt-get update && apt-get install -y wget git bash gcc gfortran g++ make file libpoppler-dev
+    apt-get update && apt-get install -y wget git bash gcc gfortran g++ make file libpoppler-dev xauth xorg
 
     echo "Installing Open MPI"
     #export OMPI_DIR=/opt/openmpi-v3.1/3.1.4
@@ -48,6 +50,7 @@ From: ubuntu
     conda activate base
     cd /opt/ && git clone https://github.com/chaneyn/HydroBlocks.git
     cd /opt/HydroBlocks
+    git checkout -b testing_nick
     python setup.py
     chmod a+rx -R /opt/HydroBlocks/
 
