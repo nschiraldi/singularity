@@ -16,8 +16,11 @@ From: rocker/rstudio
 %apprun Rscript
   exec Rscript "${@}"
 
+%apprun R
+  exec R "${@}"
+
 %runscript
-  exec rserver "${@}"
+  exec "${@}"
 
 %environment
   export R_LIBS_USER=~/R/
@@ -70,8 +73,10 @@ From: rocker/rstudio
     RMediation \
     argparse \
     devtools \
-    stringi
+    stringi \
   
   R -e "BiocManager::install()"
   R -e "devtools::install_github('cbail/textnets')"
   R -e "devtools::install_github('dpseidel/stmove')"
+  R -e BiocManager::install('multtest')
+  R -e install.packages('Seurat')
