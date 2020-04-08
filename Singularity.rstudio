@@ -48,10 +48,11 @@ From: rocker/rstudio
   libgsl-dev \
   libbz2-dev \
   libpcre3-dev \
-  texlive-latex-base
-  
+  texlive-latex-base \
+  python3
+      
   install2.r --error \
-    --deps TRUE -n 18 \
+    --deps TRUE -n 20 \
     sf \
     rgdal \
     rgeos \
@@ -74,9 +75,9 @@ From: rocker/rstudio
     argparse \
     devtools \
     stringi \
+    remotes
   
-  R -e "BiocManager::install()"
-  R -e "devtools::install_github('cbail/textnets')"
-  R -e "devtools::install_github('dpseidel/stmove')"
-  R -e BiocManager::install('multtest')
-  R -e install.packages('Seurat')
+  bash R -e "devtools::install_github('cbail/textnets')"
+  bash R -e "remotes::install_github('dpseidel/stmove')"
+  bash R -e "BiocManager::install('multtest')"
+  bash R -e "install.packages('Seurat')"
