@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: rocker/rstudio
+From: rocker/rstudio:3.6.3
 
 %labels
   Maintainer Nicholas Schiraldi
@@ -26,12 +26,11 @@ From: rocker/rstudio
   export R_LIBS_USER=~/R/
 
 %post
-  apt-get update -qq
+  apt-get update
   apt-get -y --no-install-recommends install \
   libxml2-dev \
   libcairo2-dev \
   libsqlite3-dev \
-  libmariadbd-dev \
   libssl-dev \
   libcurl4-openssl-dev \
   libssh2-1-dev \
@@ -50,7 +49,9 @@ From: rocker/rstudio
   libpcre3-dev \
   texlive-latex-base \
   python3
-      
+  
+  bash R -e "install.packages('BiocManager',dependencies=TRUE,ncpus=20)"
+    
   install2.r --error \
     --deps TRUE -n 20 \
     sf \
@@ -66,7 +67,6 @@ From: rocker/rstudio
     selectr \
     caTools \
     R2jags \
-    BiocManager \
     bain \
     readr \
     rjags \
@@ -75,7 +75,8 @@ From: rocker/rstudio
     argparse \
     devtools \
     stringi \
-    remotes
+    remotes \
+    mnormt
   
   bash R -e "devtools::install_github('cbail/textnets')"
   bash R -e "remotes::install_github('dpseidel/stmove')"
